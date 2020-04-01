@@ -51,6 +51,7 @@ public class MainDisplay extends JFrame{
     	this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 	this.setLayout(new GridLayout(1,2));		//this oznacza obiekt tej klasy, ktory bedzie utworzony w main (i kazdy kolejny obiekt)
 	this.setSize(MeshFrame.HEIGHT, MeshFrame.WIDTH/2);
+	this.setSize(700,500);
 	menuBar = new JMenuBar();
 	
 	mainMenu = new JMenu("Menu");       // menu1 jako zm. globalna
@@ -82,30 +83,36 @@ public class MainDisplay extends JFrame{
       ButonPanel.setBackground(Color.white);		
       ButonPanel.setLayout(new GridLayout(15,1));	//w tym ukladzie wszystkie te przyciski beda rownej wielkosci, jesli Generuj ma byc wiekszy to trzeba to jakos zmienic
       setLenghtLabel = new JLabel ("Set lenght");
-	    setLenghtTextField = new JTextField; 
-      setLenghtTextField.addActionListener(new ActionListener() {	//to wyrzucamy?
-		
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			// TODO Auto-generated method stub
-			terrainPanel.setBackground(new Color(123));
-			
-		}
-	});
+	    setLenghtTextField = new JTextField(); 
+	    setLenghtTextField.setActionCommand("LENGHT");
+	    	setLenghtTextField.addActionListener(new ConfigurationListener());
       setWidthLabel = new JLabel ("Set width");
-	    setWidthTextField = new JTextField;
+	    setWidthTextField = new JTextField();
+	    setWidthTextField.setActionCommand("WIDTH");
+	    	setWidthTextField.addActionListener(new ConfigurationListener());
       setMaxHeightLabel = new JLabel ("Set maximum height");
-      	    setMaxHeightTextField = new JTextField;
+      	    setMaxHeightTextField = new JTextField();
+	    setMaxHeightTextField.setActionCommand("MAX");
+       		setMaxHeightTextField.addActionListener(new ConfigurationListener());
       setMinHeightLabel = new JLabel  ("Set minimum height");
-	    setMinHeightTextField = new JTextField;
+	    setMinHeightTextField = new JTextField();
+	    setMinHeightTextField.setActionCommand("MIN");
+	       setMinHeightTextField.addActionListener(new ConfigurationListener());
       setRoughnessLabel = new JLabel  ("Set roughness");
-	    setRoughnessTextField = new JTextField;
+	    setRoughnessTextField = new JTextField();
+	    setRoughnessTextField.setActionCommand("ROUGHNESS");
+	       setRoughnessTextField.addActionListener(new ConfigurationListener());
       setSeedLabel = new JLabel ("Seed");
-	    setSeedTextField = new JTextField;
+	    setSeedTextField = new JTextField();
+	    setSeedTextField.setActionCommand("SEED");
+	       setSeedTextField.addActionListener(new ConfigurationListener());
       setRelativnessLabel = new JLabel  ("Height relativness of the neighbour points");
-	    setRelativnessTextField = new JTextField;
+	    setRelativnessTextField = new JTextField();
+	    setRelativnessTextField.setActionCommand("RELATION");
+      		setRelativnessTextField.addActionListener(new ConfigurationListener());
 	    generateButton = new JButton ("Generate");
-	    
+	    generateButton.setActionCommand("GENERATE");
+	    generateButton.addActionListener(new ConfigurationListener());
 
         ButonPanel.add(setLenghtLabel);
 	ButonPanel.add(setLenghtTextField);
