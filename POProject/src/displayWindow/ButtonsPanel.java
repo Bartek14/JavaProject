@@ -39,7 +39,7 @@ public class MainDisplay extends JFrame{
     JMenuItem SaveMenuItem;
     JMenuItem OpenMenuItem;
     JMenuItem NewMenuItem;
-    JMenuItem InterpolationMenuItem;
+    JMenu InterpolationMenu;
     JMenuBar menuBar;
     
     JPanel terrainPanel;
@@ -56,12 +56,16 @@ public class MainDisplay extends JFrame{
 	        SaveMenuItem = new JMenuItem("Save");
 	        OpenMenuItem = new JMenuItem("Open");
 	        NewMenuItem = new JMenuItem("New");
-	        InterpolationMenuItem = new JMenuItem("Interpolation");
+	        InterpolationMenu = new JMenu("Interpolation");
+	    	JMenuItem InterpolationMenuLinear = new JMenuItem("Linear");
+	    	JMenuItem InterpolationMenuTrigonometric = new JMenuItem("Trigonometric");
 	    
 	        mainMenu.add(SaveMenuItem);
 	        mainMenu.add(OpenMenuItem);
 	        mainMenu.add(NewMenuItem);
-	    	mainMenu.add(InterpolationMenuItem);
+	    	InterpolationMenu.add(InterpolationMenuLinear);
+	    	InterpolationMenu.add(InterpolationMenuTrigonometric);
+	    	mainMenu.add(InterpolationMenu);
 	        menuBar.add(mainMenu);
 	        this.setJMenuBar(menuBar);	//dodaje do okna obiekt klasy JMenuBar	
 	        
