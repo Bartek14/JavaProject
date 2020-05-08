@@ -1,25 +1,19 @@
-package displayWindow;
-
+package pl.edu.pw.fizyka.pojava.TerrainGenerator;
 
 
 import java.awt.DisplayMode;
 import java.util.Random;
-import java.util.concurrent.TimeUnit;
 
 
-import javax.swing.JFrame;
 
-
-import com.jogamp.opengl.GL;
 import com.jogamp.opengl.GL2;
 import com.jogamp.opengl.GLAutoDrawable;
-import com.jogamp.opengl.GLCapabilities;
+
 import com.jogamp.opengl.GLEventListener;
-import com.jogamp.opengl.GLProfile;
-import com.jogamp.opengl.awt.GLCanvas;
+
 import com.jogamp.opengl.awt.GLJPanel;
 import com.jogamp.opengl.glu.GLU;
-import com.jogamp.opengl.util.FPSAnimator;
+
 
 
 
@@ -38,13 +32,14 @@ public class MeshPanel extends GLJPanel implements GLEventListener {
    public long seed;
    public float smoothness=2f;
    public float roughness=0.3f;
-   public float maxHeight=70;
-   public int octaves=3;
+   public float maxHeight=320;
+   public int octaves=4;
+   public float relativness = 4f;
 
 
 	public MeshPanel() {
-
-		seed=7347248;
+		
+		seed=412474;
 		for (int x = 0; x < columns; x++) {
 			for (int y = 0; y < rows; y++) {
 				height[x][y]=finalHeight(x/smoothness, y/smoothness);
@@ -58,10 +53,13 @@ public class MeshPanel extends GLJPanel implements GLEventListener {
 	   
 	      final GL2 gl = drawable.getGL().getGL2();
 	      
+	      gl.glEnable(GL2.GL_CULL_FACE);
+	      gl.glCullFace(GL2.GL_BACK);
+	      gl.glFrontFace(GL2.GL_CCW); 
+	     
 	      gl.glPolygonMode(GL2.GL_FRONT, GL2.GL_LINE);
 	      
-	      
-	     gl.glClear (GL2.GL_COLOR_BUFFER_BIT |  GL2.GL_DEPTH_BUFFER_BIT );
+	      gl.glClear (GL2.GL_COLOR_BUFFER_BIT |  GL2.GL_DEPTH_BUFFER_BIT );
 	     gl.glMatrixMode(GL2.GL_MODELVIEW);
 	      gl.glLoadIdentity();
 	      gl.glTranslatef( 20f, 190f, -320.5f );
@@ -94,7 +92,6 @@ public class MeshPanel extends GLJPanel implements GLEventListener {
 			gl.glEnd();
 			gl.glFlush();
 	      
-	  
 	      rquad+=0.5f;
 	    }
    
@@ -123,19 +120,24 @@ public class MeshPanel extends GLJPanel implements GLEventListener {
 	      gl.glLoadIdentity();
 	  
 			
-	      glu.gluPerspective( 95.0f, h, 1.0, 2000.0 );
+	      glu.gluPerspective( 95.0f, h, 1.0, 5000.0 );
 	      gl.glMatrixMode( GL2.GL_MODELVIEW );
 	      gl.glLoadIdentity();
 	      
    }
       
    private float randomHeight(int x, int y) {
-	  
-	   float height=0;
-	   height = randomValue(x,y)/2f+(randomValue(x,y+1)+randomValue(x,y-1)+randomValue(x-1,y)+randomValue(x+1,y))+
-			   (randomValue(x+1,y+1)+randomValue(x+1,y-1)+randomValue(x-1,y+1)+randomValue(x-1,y-1))/2f;
+	  	   
+	   float height=0f;
+	  	   
+	   float tempRelativness=relativness;
+	   height+=((randomValue(x+1,y+1)+randomValue(x+1,y-1)+randomValue(x-1,y+1)+randomValue(x-1,y-1))/tempRelativness);
+	   tempRelativness/=2;
+	   height+=((randomValue(x,y+1)+randomValue(x,y-1)+randomValue(x-1,y)+randomValue(x+1,y))/tempRelativness);
+	   tempRelativness/=2;
+	   height+=(randomValue(x,y)/tempRelativness);
+			   
 	   return height;
-	   
 	   }
    private float randomValue(int x, int y) {
 	   
@@ -166,10 +168,9 @@ public class MeshPanel extends GLJPanel implements GLEventListener {
    private float finalHeight(float x, float y) {
 	   float height=0;
 	   
-	   
 	   for(int i=0; i<octaves; i++) {
-		   
-		   float frequency = (float) (Math.pow(2,i)/((float) Math.pow(2, octaves-1)));
+		     
+		   float frequency = (float) (Math.pow(2,i)/((float) Math.pow(2, octaves-i)));
 		   height+=interpolatedHeight(x*frequency, y*frequency)*maxHeight*(float)(Math.pow(roughness, i));
 		   
 	   }

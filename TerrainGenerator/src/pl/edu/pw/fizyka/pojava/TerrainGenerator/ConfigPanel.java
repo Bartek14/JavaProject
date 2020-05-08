@@ -1,8 +1,7 @@
-package displayWindow;
+package pl.edu.pw.fizyka.pojava.TerrainGenerator;
 
 import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
