@@ -1,5 +1,7 @@
 package displayWindow;
 
+
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.GridBagLayout;
@@ -36,7 +38,7 @@ public class MainDisplay extends JFrame {
 		      final JFrame frame = new JFrame ("mesh");
 		      frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		      frame.setLayout(new BorderLayout());
-		      
+		      frame.setJMenuBar(conf.menuBar);	
 		      //adding canvas to frame
 		      frame.getContentPane().add(glcanvas);
 		   

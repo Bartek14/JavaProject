@@ -1,5 +1,7 @@
 package displayWindow;
 
+
+
 import java.awt.DisplayMode;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
@@ -27,8 +29,8 @@ public class MeshPanel extends GLJPanel implements GLEventListener {
    private GLU glu = new GLU();
    private float rquad = 0.0f;
    
-   int columns = 1200;
-   int rows = 1000;
+   int columns = 500;
+   int rows = 500;
     int scale =15;
    Random heightRandom = new Random();
    float[][] height= new float[columns][rows];

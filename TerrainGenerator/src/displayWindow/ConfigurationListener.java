@@ -1,38 +1,48 @@
-package displayWindow;
+package package1;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 public class ConfigurationListener implements ActionListener {
-	
+
+	ConfigPanel panel;
+
+	public ConfigurationListener(ConfigPanel configPanel) {
+		// TODO Auto-generated constructor stub
+		this.panel = configPanel;
+	}
+
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String optionPicked = e.getActionCommand();
-		
+
 		switch (optionPicked) {
 		case "LENGHT": {
 			System.out.println("Nothing to do here with length");
-			String lengthString = setLengthTextField.getText();
-			int length = 0;
-			try
-			{
-			length = Integer.parseInt(lengthString);
-			}
-			catch (NumberFormatException)
-			{
-				length = 700;
-			}
-		break;	
+
+			
+			  String lengthString = panel.getSetLengthTextField().getText(); 
+			  int length = 0;
+			  try {
+			  length = Integer.parseInt(lengthString);
+			  } 
+			  
+			  catch (NumberFormatException ex) {
+			  length = 700;
+			  }
+			 
+			break;
 		}
+
 		case "WIDTH": {
 			System.out.println("Nothing to do here with width");
-			String widthString = setWidthTextField.getText();
-			int width = 0;
+			String widthString = panel.getSetWidthTextField().getText();
+			int width = 0; 
+			width = Integer.parseInt(widthString);
 			try
 			{
 			width = Integer.parseInt(widthString);
 			}
-			catch (NumberFormatException)
+			catch (NumberFormatException ex)
 			{
 				width = 1000;
 			}
@@ -40,13 +50,14 @@ public class ConfigurationListener implements ActionListener {
 		}
 		case "MAX": {
 			System.out.println("Nothing to do here with max");
-			String maxHeightString = setMaxHeightTextField.getText();
+			String maxHeightString = panel.getSetMaxHeightTextField().getText();
 			float maxHeight = 0;
+			maxHeight = Float.parseFloat(maxHeightString);
 			try
 			{
 			maxHeight = Float.parseFloat(maxHeightString);
 			}
-			catch (NumberFormatException)
+			catch (NumberFormatException ex)
 			{
 				maxHeight = 70;
 			}
@@ -54,13 +65,14 @@ public class ConfigurationListener implements ActionListener {
 		}
 		case "MIN": {
 			System.out.println("Nothing to do here with min");
-			String minHeightString = setMinHeightTextField.getText();
+			String minHeightString = panel.getSetMinHeightTextField().getText();
 			float minHeight = 0;
+			minHeight = Float.parseFloat(minHeightString);
 			try
 			{
 			minHeight = Float.parseFloat(minHeightString);
 			}
-			catch (NumberFormatException)
+			catch (NumberFormatException ex)
 			{
 				minHeight = 10;
 			}
@@ -68,13 +80,14 @@ public class ConfigurationListener implements ActionListener {
 		}
 		case "ROUGHNESS": {
 			System.out.println("Nothing to do here with roughness");
-			String roughnesstString = setRoughTextField.getText();
+			String roughnessString = panel.getSetRoughnessTextField().getText();
 			float roughness = 0;
+			roughness = Float.parseFloat(roughnessString);
 			try
 			{
 			roughness = Float.parseFloat(roughnessString);
 			}
-			catch (NumberFormatException)
+			catch (NumberFormatException ex)
 			{
 				roughness = 0.3f;
 			}
@@ -82,13 +95,14 @@ public class ConfigurationListener implements ActionListener {
 		}
 		case "SEED": {
 			System.out.println("Nothing to do here with seed");
-			String seedString = setSeedTextField.getText();
+			String seedString = panel.getSetSeedTextField().getText();
 			long seed;
+			seed = Long.parseLong(seedString);
 			try
 			{
 			seed = Long.parseLong(seedString);
 			}
-			catch (NumberFormatException)
+			catch (NumberFormatException ex)
 			{
 				seed = 	7347248;
 			}
@@ -96,13 +110,14 @@ public class ConfigurationListener implements ActionListener {
 		}
 		case "RELATION": {
 			System.out.println("Nothing to do here with relation");
-			String relativnessString = setRelativnessTextField.getText();
+			String relativnessString = panel.getSetRelativnessTextField().getText();
 			float relativness = 0;
+			relativness = Float.parseFloat(relativnessString);
 			try
 			{
 			relativness = Float.parseFloat(relativnessString);
 			}
-			catch (NumberFormatException)
+			catch (NumberFormatException ex)
 			{
 				relativness = 2f;
 			}
@@ -110,17 +125,17 @@ public class ConfigurationListener implements ActionListener {
 		}
 		case "GENERATE": {
 			System.out.println("Nothing to do here with generate");
-			repaint();
+			panel.repaint();
 			break;
 		}
 		case "LINEAR": {
 			System.out.println("Nothing to do here with linear");
-			isLinear = true;
+			panel.isLinear = true;
 		break;	
 		}
 		case "TRIGONOMETRIC": {
 			System.out.println("Nothing to do here with trigonometric");
-			isLinear = false;
+			panel.isLinear = false;
 		break;	
 		}		
 		default:
