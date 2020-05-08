@@ -1,4 +1,6 @@
-package displayWindow;
+package package1;
+
+
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -16,7 +18,9 @@ public class MainDisplay extends JFrame {
 	
 	final public static int HEIGHT = 700;
 	final public static int WIDTH = 1000;
-	
+	//konstruktor robiacy (nie wszystko) to co teraz robi main napisac
+	//tutaj (w MainDisplayu) bedzie menu, pola tego typu
+	//zrobic...
 	   public static void main( String[] args ) {
 
 		 //getting the capabilities object of GL2 profile
@@ -36,7 +40,7 @@ public class MainDisplay extends JFrame {
 		      final JFrame frame = new JFrame ("mesh");
 		      frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		      frame.setLayout(new BorderLayout());
-		      
+		      frame.setJMenuBar(conf.menuBar);	
 		      //adding canvas to frame
 		      frame.getContentPane().add(glcanvas);
 		   
@@ -47,7 +51,7 @@ public class MainDisplay extends JFrame {
 		      frame.add(conf,BorderLayout.EAST);
 		      frame.setVisible(true);
 		      
-		      final FPSAnimator animator = new FPSAnimator(glcanvas, 300,true); 
+		      final FPSAnimator animator = new FPSAnimator(glcanvas, 300,true); //funkcja od krecenia
 		         animator.start();
 		   }
 		   
