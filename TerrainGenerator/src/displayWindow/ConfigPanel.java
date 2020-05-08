@@ -30,19 +30,56 @@ public class ConfigPanel extends JPanel implements ActionListener {
 	JLabel setRoughnessLabel;
 	JLabel setSeedLabel;
 	JLabel setRelativnessLabel;
-	/*
+	
     JMenu mainMenu;	
-    JMenuItem SaveMenuItem;
-    JMenuItem OpenMenuItem;
-    JMenuItem NewMenuItem;
-
-    JMenu InterpolationMenu;
-
-    JMenuBar menuBar;
-    */
+    JMenuItem saveMenuItem;
+    JMenuItem openMenuItem;
+    JMenuItem newMenuItem;
+	JMenu interpolationMenu;
+	JMenuItem interpolationMenuLinear;
+	JMenuItem interpolationMenuTrigonometric;
+	JMenuBar menuBar;
+	boolean isLinear;
+    
     public ConfigPanel() {
 		
-    	 this.setLayout(new GridLayout(15,1));	//w tym ukladzie wszystkie te przyciski beda rownej wielkosci, jesli Generuj ma byc wiekszy to trzeba to jakos zmienic
+    	 menubar = new MenuBar();
+	 mainMenu = new JMenu("Menu");
+	    mainMenu.setActionCommand("MAINMENU");
+   	    mainMenu.addActionListener(new ConfigurationListener());
+	 saveMenuItem = new JMenuItem("Save");
+	    saveMenuItem.setActionCommand("SAVE");
+   	    saveMenuItem.addActionListener(new ConfigurationListener());
+	 openMenuItem = new JMenuItem("Open");
+	    openMenuItem.setActionCommand("OPEN");
+   	    openMenuItem.addActionListener(new ConfigurationListener());
+	 newMenuItem = new JMenuItem("New");
+	    newMenuItem.setActionCommand("NEW");
+   	    newMenuItem.addActionListener(new ConfigurationListener());
+	    
+	 interpolationMenu = new JMenu("Interpolation");
+	    interpolationMenu.setActionCommand("INTERPOLATIONMENU");
+   	    interpolationMenu.addActionListener(new ConfigurationListener());
+	 interpolationMenuLinear = new JMenuItem("Linear");
+	    interpolationMenuLinear.setActionCommand("LINEAR");
+   	    interpolationMenulinear.addActionListener(new ConfigurationListener());
+	 interpolationMenuTrigonometric = new JMenuItem("Trigonometric");
+	    interpolationMenuTrigonometric.setActionCommand("TRIGONOMETRIC");
+   	    interpolationMenuTrigonometric.addActionListener(new ConfigurationListener());
+	    
+	        mainMenu.add(SaveMenuItem);
+	        mainMenu.add(OpenMenuItem);
+	        mainMenu.add(NewMenuItem);
+
+	    	InterpolationMenu.add(InterpolationMenuLinear);
+	    	InterpolationMenu.add(InterpolationMenuTrigonometric);
+	    	mainMenu.add(InterpolationMenu);
+
+	        menuBar.add(mainMenu);
+	        this.setJMenuBar(menuBar);	
+	    
+	    
+	 this.setLayout(new GridLayout(15,1));	//w tym ukladzie wszystkie te przyciski beda rownej wielkosci, jesli Generuj ma byc wiekszy to trzeba to jakos zmienic
          setLenghtLabel = new JLabel ("Set lenght");
    	    setLenghtTextField = new JTextField(); 
    	    setLenghtTextField.setActionCommand("LENGHT");
