@@ -29,17 +29,23 @@ public class MeshPanel extends GLJPanel implements GLEventListener {
    Random heightRandom = new Random();
    float[][] height= new float[columns][rows];
    
-   public long seed;
-   public float smoothness=2f;
-   public float roughness=0.3f;
-   public float maxHeight=320;
-   public int octaves=4;
-   public float relativness = 4f;
+   private long seed;
+   private float smoothness=2f;
+   private float roughness=0.3f;
+   private float maxHeight=320;
+   private int octaves=4;
+   private float relativness = 4f;
 
 
-	public MeshPanel() {
+	public MeshPanel(Params param) {
 		
-		seed=412474;
+		this.seed = param.getSeed();
+		this.smoothness = param.getSmoothness();
+		this.roughness = param.getRoughness();
+		this.maxHeight = param.getMaxHeight();
+		this.octaves = 4;
+		this.relativness = param.getRelativness();
+		
 		for (int x = 0; x < columns; x++) {
 			for (int y = 0; y < rows; y++) {
 				height[x][y]=finalHeight(x/smoothness, y/smoothness);

@@ -13,22 +13,22 @@ import javax.swing.JTextField;
 
 public class ConfigPanel extends JPanel {
 	
-	JTextField setLengthTextField;
-    JTextField setWidthTextField;
-    JTextField setMaxHeightTextField;
-    JTextField setMinHeightTextField;
-    JTextField setRoughnessTextField;
-    JTextField setSeedTextField;
-    JTextField setRelativnessTextField;
+	JTextField lengthTextField;
+    JTextField widthTextField;
+    JTextField maxHeightTextField;
+    JTextField minHeightTextField;
+    JTextField roughnessTextField;
+    JTextField seedTextField;
+    JTextField relativnessTextField;
     JButton generateButton;
     
-	JLabel setLengthLabel;
-	JLabel setWidthLabel;
-	JLabel setMaxHeightLabel;
-	JLabel setMinHeightLabel;
-	JLabel setRoughnessLabel;
-	JLabel setSeedLabel;
-	JLabel setRelativnessLabel;
+	JLabel lengthLabel;
+	JLabel widthLabel;
+	JLabel maxHeightLabel;
+	JLabel minHeightLabel;
+	JLabel roughnessLabel;
+	JLabel seedLabel;
+	JLabel relativnessLabel;
 	
     JMenu mainMenu;	
     JMenuItem saveMenuItem;
@@ -79,74 +79,74 @@ public class ConfigPanel extends JPanel {
 	    
 	    
 	 this.setLayout(new GridLayout(15,1));	
-         setLengthLabel = new JLabel ("Set length");
-   	    setLengthTextField = new JTextField(); 
-   	    setLengthTextField.setActionCommand("LENGHT");
-   	    	setLengthTextField.addActionListener(new ConfigurationListener(this));
-         setWidthLabel = new JLabel ("Set width");
-   	    setWidthTextField = new JTextField();
-   	    setWidthTextField.setActionCommand("WIDTH");
-   	    	setWidthTextField.addActionListener(new ConfigurationListener(this));
-         setMaxHeightLabel = new JLabel ("Set maximum height");
-         	    setMaxHeightTextField = new JTextField();
-   	    setMaxHeightTextField.setActionCommand("MAX");
-          		setMaxHeightTextField.addActionListener(new ConfigurationListener(this));
-         setMinHeightLabel = new JLabel  ("Set minimum height");
-   	    setMinHeightTextField = new JTextField();
-   	    setMinHeightTextField.setActionCommand("MIN");
-   	       setMinHeightTextField.addActionListener(new ConfigurationListener(this));
-         setRoughnessLabel = new JLabel  ("Set roughness");
-   	    setRoughnessTextField = new JTextField();
-   	    setRoughnessTextField.setActionCommand("ROUGHNESS");
-   	       setRoughnessTextField.addActionListener(new ConfigurationListener(this));
-         setSeedLabel = new JLabel ("Seed");
-   	    setSeedTextField = new JTextField();
-   	    setSeedTextField.setActionCommand("SEED");
-   	       setSeedTextField.addActionListener(new ConfigurationListener(this));
-         setRelativnessLabel = new JLabel  ("Height relativeness of the neighbour points");
-   	    setRelativnessTextField = new JTextField();
-   	    setRelativnessTextField.setActionCommand("RELATION");
-         		setRelativnessTextField.addActionListener(new ConfigurationListener(this));
+         lengthLabel = new JLabel ("Set length");
+   	    lengthTextField = new JTextField(); 
+   	    lengthTextField.setActionCommand("LENGHT");
+   	    	lengthTextField.addActionListener(new ConfigurationListener(this));
+         widthLabel = new JLabel ("Set width");
+   	    widthTextField = new JTextField();
+   	    widthTextField.setActionCommand("WIDTH");
+   	    	widthTextField.addActionListener(new ConfigurationListener(this));
+         maxHeightLabel = new JLabel ("Set maximum height");
+         	    maxHeightTextField = new JTextField();
+   	    maxHeightTextField.setActionCommand("MAX");
+          		maxHeightTextField.addActionListener(new ConfigurationListener(this));
+         minHeightLabel = new JLabel  ("Set minimum height");
+   	    minHeightTextField = new JTextField();
+   	    minHeightTextField.setActionCommand("MIN");
+   	       minHeightTextField.addActionListener(new ConfigurationListener(this));
+         roughnessLabel = new JLabel  ("Set roughness");
+   	    roughnessTextField = new JTextField();
+   	    roughnessTextField.setActionCommand("ROUGHNESS");
+   	       roughnessTextField.addActionListener(new ConfigurationListener(this));
+         seedLabel = new JLabel ("Seed");
+   	    seedTextField = new JTextField();
+   	    seedTextField.setActionCommand("SEED");
+   	       seedTextField.addActionListener(new ConfigurationListener(this));
+         relativnessLabel = new JLabel  ("Height relativeness of the neighbour points");
+   	    relativnessTextField = new JTextField();
+   	    relativnessTextField.setActionCommand("RELATION");
+         		relativnessTextField.addActionListener(new ConfigurationListener(this));
    	    generateButton = new JButton ("Generate");
    	    generateButton.setActionCommand("GENERATE");
    	    generateButton.addActionListener(new ConfigurationListener(this));
 
-           this.add(setLengthLabel);
-           this.add(setLengthTextField);
-           this.add(setWidthLabel);
-           this.add(setWidthTextField);
-           this.add(setMaxHeightLabel);
-           this.add(setMaxHeightTextField);
-           this.add(setMinHeightLabel);
-           this.add(setMinHeightTextField);
-           this.add(setRoughnessLabel);
-           this.add(setRoughnessTextField);
-           this.add(setSeedLabel);
-           this.add(setSeedTextField);
-           this.add(setRelativnessLabel);
-           this.add(setRelativnessTextField);
+           this.add(lengthLabel);
+           this.add(lengthTextField);
+           this.add(widthLabel);
+           this.add(widthTextField);
+           this.add(maxHeightLabel);
+           this.add(maxHeightTextField);
+           this.add(minHeightLabel);
+           this.add(minHeightTextField);
+           this.add(roughnessLabel);
+           this.add(roughnessTextField);
+           this.add(seedLabel);
+           this.add(seedTextField);
+           this.add(relativnessLabel);
+           this.add(relativnessTextField);
            this.add(generateButton);
     }
-	public JTextField getSetLengthTextField() {
-		return setLengthTextField;
+	public JTextField getLengthTextField() {
+		return lengthTextField;
 	}
-	public JTextField getSetWidthTextField() {
-		return setWidthTextField;
+	public JTextField getWidthTextField() {
+		return widthTextField;
 	}
-	public JTextField getSetMaxHeightTextField() {
-		return setMaxHeightTextField;
+	public JTextField getMaxHeightTextField() {
+		return maxHeightTextField;
 	}
-	public JTextField getSetMinHeightTextField() {
-		return setMinHeightTextField;
+	public JTextField getMinHeightTextField() {
+		return minHeightTextField;
 	}
-	public JTextField getSetRoughnessTextField() {
-		return setRoughnessTextField;
+	public JTextField getRoughnessTextField() {
+		return roughnessTextField;
 	}
-	public JTextField getSetSeedTextField() {
-		return setSeedTextField;
+	public JTextField getSeedTextField() {
+		return seedTextField;
 	}
-	public JTextField getSetRelativnessTextField() {
-		return setRelativnessTextField;
+	public JTextField getRelativnessTextField() {
+		return relativnessTextField;
 	}
 	
 	public boolean isLinear() {

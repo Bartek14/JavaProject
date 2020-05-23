@@ -26,13 +26,12 @@ public class MainDisplay extends JFrame {
 		      // The canvas 
 		      final GLCanvas glcanvas = new GLCanvas(capabilities);
 		     
-		      MeshPanel mesh = new MeshPanel();
-		     
+
 		      ConfigPanel conf = new ConfigPanel();
-		      glcanvas.addGLEventListener(mesh);
-		
 		      
-		      //creating frame
+//		      Params params = new Params(Long.parseLong(conf.getSetSeedTextField().getText()), Float.parseFloat(conf.getSetRoughnessTextField().getText()),
+//		    		  Float.parseFloat(conf.getSetMaxHeightTextField().getText()),3, Float.parseFloat(conf.getSetRelativnessTextField().getText()));
+//		       //creating frame
 		      final JFrame frame = new JFrame ("mesh");
 		      frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		      frame.setLayout(new BorderLayout());
@@ -46,6 +45,18 @@ public class MainDisplay extends JFrame {
 		      frame.add(glcanvas, BorderLayout.CENTER);
 		      frame.add(conf,BorderLayout.EAST);
 		      frame.setVisible(true);
+		      while(conf.getSeedTextField().getText().isEmpty()) {
+		    	  System.out.println(conf.getSeedTextField().getText());
+		      }
+		      Params params = new Params(Long.parseLong(conf.getSeedTextField().getText()),0.3f,
+		    		  170f,3, 4f);
+		      
+		      MeshPanel mesh = new MeshPanel(params);
+		     
+		      glcanvas.addGLEventListener(mesh);
+		
+		      
+		     
 		      
 		      final FPSAnimator animator = new FPSAnimator(glcanvas, 300,true); 
 		         animator.start();
