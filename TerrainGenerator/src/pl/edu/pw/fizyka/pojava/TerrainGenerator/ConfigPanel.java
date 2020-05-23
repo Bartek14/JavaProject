@@ -39,6 +39,7 @@ public class ConfigPanel extends JPanel {
 	JMenuItem interpolationMenuTrigonometric;
 	JMenuBar menuBar;
 	boolean isLinear;
+	boolean generating;
     
     public ConfigPanel() {
 		
@@ -149,8 +150,14 @@ public class ConfigPanel extends JPanel {
 		return relativnessTextField;
 	}
 	
-	public boolean isLinear() {
+	public boolean getIsLinear() {
 		return isLinear;
+	}
+	public void setGenerating(boolean g) {
+		this.generating = g;
+	}
+	public boolean getGenerating() {
+		return this.generating;
 	}
 
 

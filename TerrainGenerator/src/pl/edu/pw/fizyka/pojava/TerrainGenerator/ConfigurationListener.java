@@ -4,11 +4,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 public class ConfigurationListener implements ActionListener {
 
-	ConfigPanel panel;
+	ConfigPanel confPanel;
 
 	public ConfigurationListener(ConfigPanel configPanel) {
 		// TODO Auto-generated constructor stub
-		this.panel = configPanel;
+		this.confPanel = configPanel;
 	}
 
 	@Override
@@ -20,7 +20,7 @@ public class ConfigurationListener implements ActionListener {
 			System.out.println("Nothing to do here with length");
 
 			
-			  String lengthString = panel.getLengthTextField().getText(); 
+			  String lengthString = confPanel.getLengthTextField().getText(); 
 			  int length = 0;
 			  try {
 			  length = Integer.parseInt(lengthString);
@@ -35,7 +35,7 @@ public class ConfigurationListener implements ActionListener {
 
 		case "WIDTH": {
 			System.out.println("Nothing to do here with width");
-			String widthString = panel.getWidthTextField().getText();
+			String widthString = confPanel.getWidthTextField().getText();
 			int width = 0; 
 			width = Integer.parseInt(widthString);
 			try
@@ -50,7 +50,7 @@ public class ConfigurationListener implements ActionListener {
 		}
 		case "MAX": {
 			System.out.println("Nothing to do here with max");
-			String maxHeightString = panel.getMaxHeightTextField().getText();
+			String maxHeightString = confPanel.getMaxHeightTextField().getText();
 			float maxHeight = 0;
 			maxHeight = Float.parseFloat(maxHeightString);
 			try
@@ -65,7 +65,7 @@ public class ConfigurationListener implements ActionListener {
 		}
 		case "MIN": {
 			System.out.println("Nothing to do here with min");
-			String minHeightString = panel.getMinHeightTextField().getText();
+			String minHeightString = confPanel.getMinHeightTextField().getText();
 			float minHeight = 0;
 			minHeight = Float.parseFloat(minHeightString);
 			try
@@ -80,7 +80,7 @@ public class ConfigurationListener implements ActionListener {
 		}
 		case "ROUGHNESS": {
 			System.out.println("Nothing to do here with roughness");
-			String roughnessString = panel.getRoughnessTextField().getText();
+			String roughnessString = confPanel.getRoughnessTextField().getText();
 			float roughness = 0;
 			roughness = Float.parseFloat(roughnessString);
 			try
@@ -95,7 +95,7 @@ public class ConfigurationListener implements ActionListener {
 		}
 		case "SEED": {
 			System.out.println("Nothing to do here with seed");
-			String seedString = panel.getSeedTextField().getText();
+			String seedString = confPanel.getSeedTextField().getText();
 			long seed;
 			seed = Long.parseLong(seedString);
 			try
@@ -110,7 +110,7 @@ public class ConfigurationListener implements ActionListener {
 		}
 		case "RELATION": {
 			System.out.println("Nothing to do here with relation");
-			String relativnessString = panel.getRelativnessTextField().getText();
+			String relativnessString = confPanel.getRelativnessTextField().getText();
 			float relativness = 0;
 			relativness = Float.parseFloat(relativnessString);
 			try
@@ -124,18 +124,18 @@ public class ConfigurationListener implements ActionListener {
 			break;
 		}
 		case "GENERATE": {
-			System.out.println("Nothing to do here with generate");
-			panel.repaint();
+			System.out.println("generate");
+			confPanel.setGenerating(true);
 			break;
 		}
 		case "LINEAR": {
 			System.out.println("Nothing to do here with linear");
-			panel.isLinear = true;
+			confPanel.isLinear = true;
 		break;	
 		}
 		case "TRIGONOMETRIC": {
 			System.out.println("Nothing to do here with trigonometric");
-			panel.isLinear = false;
+			confPanel.isLinear = false;
 		break;	
 		}		
 		default:
