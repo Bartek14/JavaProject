@@ -17,6 +17,11 @@ public class MainDisplay extends JFrame {
 	final public static int HEIGHT = 700;
 	final public static int WIDTH = 1000;
 	
+	public MainDisplay() {
+		// TODO Auto-generated constructor stub
+	
+	}
+	
 	   public static void main( String[] args ) {
 
 		 //getting the capabilities object of GL2 profile
@@ -26,12 +31,13 @@ public class MainDisplay extends JFrame {
 		      // The canvas 
 		      final GLCanvas glcanvas = new GLCanvas(capabilities);
 		     
+		      Params params = new Params();
 
-		      ConfigPanel conf = new ConfigPanel();
+		      ConfigPanel conf = new ConfigPanel(params);
 		      
 //		      Params params = new Params(Long.parseLong(conf.getSetSeedTextField().getText()), Float.parseFloat(conf.getSetRoughnessTextField().getText()),
 //		    		  Float.parseFloat(conf.getSetMaxHeightTextField().getText()),3, Float.parseFloat(conf.getSetRelativnessTextField().getText()));
-//		       //creating frame
+		       //creating frame
 		      final JFrame frame = new JFrame ("mesh");
 		      frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		      frame.setLayout(new BorderLayout());
@@ -45,13 +51,8 @@ public class MainDisplay extends JFrame {
 		      frame.add(glcanvas, BorderLayout.CENTER);
 		      frame.add(conf,BorderLayout.EAST);
 		      frame.setVisible(true);
-		      while(conf.getSeedTextField().getText().isEmpty()) {
-		    	  System.out.println(conf.getSeedTextField().getText());
-		      }
-		      Params params = new Params(Long.parseLong(conf.getSeedTextField().getText()),0.3f,
-		    		  170f,3, 4f);
-		      
-		      MeshPanel mesh = new MeshPanel(params);
+
+		      MeshPanel mesh = new MeshPanel();
 		     
 		      glcanvas.addGLEventListener(mesh);
 		

@@ -23,41 +23,39 @@ public class MeshPanel extends GLJPanel implements GLEventListener {
    private GLU glu = new GLU();
    private float rquad = 0.0f;
    
-   int columns = 500;
-   int rows = 500;
-    int scale =15;
-   Random heightRandom = new Random();
-   float[][] height= new float[columns][rows];
-   
-   private long seed;
+
+    final int scale =15;
+    Random heightRandom = new Random();
+
+   //Params parameters;
+
+   //private long seed;
    private float smoothness=2f;
-   private float roughness=0.3f;
-   private float maxHeight=320;
-   private int octaves=4;
-   private float relativness = 4f;
+   //private float roughness=0.3f;
+   //private float maxHeight=320;
+   //private int octaves=4;
+   //private float relativness = 4f;
+   //int columns = 500;
+   //int rows = 500;
+   float[][] height;
+   
 
-
-	public MeshPanel(Params param) {
-		
-		this.seed = param.getSeed();
-		this.smoothness = param.getSmoothness();
-		this.roughness = param.getRoughness();
-		this.maxHeight = param.getMaxHeight();
-		this.octaves = 4;
-		this.relativness = param.getRelativness();
-		
-		for (int x = 0; x < columns; x++) {
-			for (int y = 0; y < rows; y++) {
-				height[x][y]=finalHeight(x/smoothness, y/smoothness);
-			}
-		}
+	public MeshPanel() {
+		meshInit();
 	}
       
    @Override
    public void display( GLAutoDrawable drawable ) {
-	 
-	   
+
 	      final GL2 gl = drawable.getGL().getGL2();
+	      
+		   	if(ConfigPanel.getGenerating())
+		   	{
+		   		gl.glFlush();
+		   		meshInit();
+		   		ConfigPanel.setGenerating(false);
+		   	}	
+		   	
 	      
 	      gl.glEnable(GL2.GL_CULL_FACE);
 	      gl.glCullFace(GL2.GL_BACK);
@@ -73,13 +71,13 @@ public class MeshPanel extends GLJPanel implements GLEventListener {
 	     gl.glRotatef( rquad, 0.0f, 1.0f, 1.0f );
 	     gl.glRotatef( -45, 1.0f, 0.0f, 0.0f );
 
-	      gl.glTranslatef( -(columns*scale/2f), (rows*scale/2f), -320.5f );
+	      gl.glTranslatef( -(Params.getWidth()*scale/2f), (Params.getLength()*scale/2f), -320.5f );
 	      
-	      for(int y=0; y>-rows+1; y--){ 
+	      for(int y=0; y>-Params.getLength()+1; y--){ 
 
 	    	  gl.glBegin( GL2.GL_TRIANGLE_STRIP);
 	    	  
-				for (int x = 0; x < columns; x++) {
+				for (int x = 0; x < Params.getWidth(); x++) {
 					gl.glVertex3f(x*scale, y*scale, height[x][-y]);
 					gl.glVertex3f(x*scale, (y-1)*scale,height[x][-y+1]);
 				}
@@ -90,9 +88,9 @@ public class MeshPanel extends GLJPanel implements GLEventListener {
 	      }
 	      gl.glBegin( GL2.GL_TRIANGLE_STRIP);
     	  
-			for (int x = 0; x < columns; x++) {
-				gl.glVertex3f(x*scale, (-rows+1)*scale, height[x][rows-1]);
-				gl.glVertex3f(x*scale, -rows*scale,height[x][rows-1]);
+			for (int x = 0; x < Params.getWidth(); x++) {
+				gl.glVertex3f(x*scale, (-Params.getLength()+1)*scale, height[x][Params.getLength()-1]);
+				gl.glVertex3f(x*scale, -Params.getLength()*scale,height[x][Params.getLength()-1]);
 			}
 			
 			gl.glEnd();
@@ -136,7 +134,7 @@ public class MeshPanel extends GLJPanel implements GLEventListener {
 	  	   
 	   float height=0f;
 	  	   
-	   float tempRelativness=relativness;
+	   float tempRelativness=Params.getRelativness();
 	   height+=((randomValue(x+1,y+1)+randomValue(x+1,y-1)+randomValue(x-1,y+1)+randomValue(x-1,y-1))/tempRelativness);
 	   tempRelativness/=2;
 	   height+=((randomValue(x,y+1)+randomValue(x,y-1)+randomValue(x-1,y)+randomValue(x+1,y))/tempRelativness);
@@ -147,7 +145,7 @@ public class MeshPanel extends GLJPanel implements GLEventListener {
 	   }
    private float randomValue(int x, int y) {
 	   
-	   heightRandom.setSeed(x*12345+y*4321+seed*54321);
+	   heightRandom.setSeed(x*12345+y*4321+Params.getSeed()*54321);
 	   return heightRandom.nextFloat()*2-1;
     }
    private float cosineFading(float startInterpolation, float endInterpolation, float factor ) {
@@ -174,12 +172,33 @@ public class MeshPanel extends GLJPanel implements GLEventListener {
    private float finalHeight(float x, float y) {
 	   float height=0;
 	   
-	   for(int i=0; i<octaves; i++) {
+	   for(int i=0; i<Params.getOctaves(); i++) {
 		     
-		   float frequency = (float) (Math.pow(2,i)/((float) Math.pow(2, octaves-i)));
-		   height+=interpolatedHeight(x*frequency, y*frequency)*maxHeight*(float)(Math.pow(roughness, i));
+		   float frequency = (float) (Math.pow(2,i)/((float) Math.pow(2, Params.getOctaves()-i)));
+		   height+=interpolatedHeight(x*frequency, y*frequency)*Params.getMaxHeight()*(float)(Math.pow(Params.getRoughness(), i));
 		   
 	   }
 	   return height;
    }
+   private void meshInit() {
+		//parameters = new Params(ConfigPanel.param);
+		 height= new float[Params.getWidth()][Params.getLength()];
+		for (int x = 0; x < Params.getWidth(); x++) {
+			for (int y = 0; y < Params.getLength(); y++) {
+				height[x][y]=finalHeight(x/smoothness, y/smoothness);
+			}
+		}
+   }
+   /*
+   public void setParams(Params param) {
+		this.parameters.setSeed(param.getSeed());
+		this.smoothness = param.getSmoothness();
+		this.roughness = param.getRoughness();
+		this.maxHeight = param.getMaxHeight();
+		this.octaves = param.getOctaves();
+		this.relativness = param.getRelativness();
+		this.columns=param.getWidth();
+		this.rows=param.getLength();
+   }
+   */
 }

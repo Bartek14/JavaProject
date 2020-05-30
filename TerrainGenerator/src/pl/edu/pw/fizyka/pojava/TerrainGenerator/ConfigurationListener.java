@@ -5,10 +5,11 @@ import java.awt.event.ActionListener;
 public class ConfigurationListener implements ActionListener {
 
 	ConfigPanel confPanel;
-
+	//Params param;
 	public ConfigurationListener(ConfigPanel configPanel) {
 		// TODO Auto-generated constructor stub
 		this.confPanel = configPanel;
+		//this.param = new Params();
 	}
 
 	@Override
@@ -16,117 +17,76 @@ public class ConfigurationListener implements ActionListener {
 		String optionPicked = e.getActionCommand();
 
 		switch (optionPicked) {
-		case "LENGHT": {
-			System.out.println("Nothing to do here with length");
 
-			
-			  String lengthString = confPanel.getLengthTextField().getText(); 
-			  int length = 0;
-			  try {
-			  length = Integer.parseInt(lengthString);
-			  } 
-			  
-			  catch (NumberFormatException ex) {
-			  length = 700;
-			  }
-			 
-			break;
-		}
-
-		case "WIDTH": {
-			System.out.println("Nothing to do here with width");
-			String widthString = confPanel.getWidthTextField().getText();
-			int width = 0; 
-			width = Integer.parseInt(widthString);
-			try
-			{
-			width = Integer.parseInt(widthString);
-			}
-			catch (NumberFormatException ex)
-			{
-				width = 1000;
-			}
-			break;
-		}
-		case "MAX": {
-			System.out.println("Nothing to do here with max");
-			String maxHeightString = confPanel.getMaxHeightTextField().getText();
-			float maxHeight = 0;
-			maxHeight = Float.parseFloat(maxHeightString);
-			try
-			{
-			maxHeight = Float.parseFloat(maxHeightString);
-			}
-			catch (NumberFormatException ex)
-			{
-				maxHeight = 70;
-			}
-			break;
-		}
-		case "MIN": {
-			System.out.println("Nothing to do here with min");
-			String minHeightString = confPanel.getMinHeightTextField().getText();
-			float minHeight = 0;
-			minHeight = Float.parseFloat(minHeightString);
-			try
-			{
-			minHeight = Float.parseFloat(minHeightString);
-			}
-			catch (NumberFormatException ex)
-			{
-				minHeight = 10;
-			}
-			break;
-		}
-		case "ROUGHNESS": {
-			System.out.println("Nothing to do here with roughness");
-			String roughnessString = confPanel.getRoughnessTextField().getText();
-			float roughness = 0;
-			roughness = Float.parseFloat(roughnessString);
-			try
-			{
-			roughness = Float.parseFloat(roughnessString);
-			}
-			catch (NumberFormatException ex)
-			{
-				roughness = 0.3f;
-			}
-			break;
-		}
-		case "SEED": {
-			System.out.println("Nothing to do here with seed");
-			String seedString = confPanel.getSeedTextField().getText();
-			long seed;
-			seed = Long.parseLong(seedString);
-			try
-			{
-			seed = Long.parseLong(seedString);
-			}
-			catch (NumberFormatException ex)
-			{
-				seed = 	7347248;
-			}
-		break;	
-		}
-		case "RELATION": {
-			System.out.println("Nothing to do here with relation");
-			String relativnessString = confPanel.getRelativnessTextField().getText();
-			float relativness = 0;
-			relativness = Float.parseFloat(relativnessString);
-			try
-			{
-			relativness = Float.parseFloat(relativnessString);
-			}
-			catch (NumberFormatException ex)
-			{
-				relativness = 2f;
-			}
-			break;
-		}
 		case "GENERATE": {
 			System.out.println("generate");
-			confPanel.setGenerating(true);
+			ConfigPanel.setGenerating(true);
+			
+			 String lengthString = confPanel.getLengthTextField().getText(); 
+			  try {
+			  Params.setLength(Integer.parseInt(lengthString));
+			  } 
+			  catch (NumberFormatException ex) {
+				  System.out.println("Nothing to do here with length");
+			  }
+			  
+				String widthString = confPanel.getWidthTextField().getText();
+				try
+				{
+					 Params.setWidth(Integer.parseInt(widthString));
+				}
+				catch (NumberFormatException ex)
+				{
+					System.out.println("Nothing to do here with width");
+				}
+			  
+				
+				String maxHeightString = confPanel.getMaxHeightTextField().getText();
+				try
+				{
+					Params.setMaxHeight(Float.parseFloat(maxHeightString));
+				}
+				catch (NumberFormatException ex)
+				{
+					System.out.println("Nothing to do here with max");
+				}
+				
+				
+				String minHeightString = confPanel.getMinHeightTextField().getText();
+				try
+				{
+					Params.setMinHeight(Float.parseFloat(minHeightString));
+				}
+				catch (NumberFormatException ex)
+				{
+					System.out.println("Nothing to do here with min");
+				}
+				
+				
+				String roughnessString = confPanel.getRoughnessTextField().getText();
+				try
+				{
+					Params.setRoughness(Float.parseFloat(roughnessString));
+				}
+				catch (NumberFormatException ex)
+				{
+					System.out.println("Nothing to do here with roughness");
+				}
+				
+				String seedString = confPanel.getSeedTextField().getText();
+				try
+				{
+					Params.setSeed(Integer.parseInt(seedString));
+				}
+				catch (NumberFormatException ex)
+				{
+					System.out.println("Nothing to do here with seed");
+				}
+				
 			break;
+			
+			
+
 		}
 		case "LINEAR": {
 			System.out.println("Nothing to do here with linear");

@@ -38,11 +38,16 @@ public class ConfigPanel extends JPanel {
 	JMenuItem interpolationMenuLinear;
 	JMenuItem interpolationMenuTrigonometric;
 	JMenuBar menuBar;
+	
+	static Params param;
 	boolean isLinear;
-	boolean generating;
+	static boolean generating;
     
-    public ConfigPanel() {
+    public ConfigPanel(Params p) {
 		
+    	//copy constructor
+    	//ConfigPanel.param=new Params(p);
+    	
     	 menuBar = new JMenuBar();
 	 mainMenu = new JMenu("Menu");
 	    mainMenu.setActionCommand("MAINMENU");
@@ -82,33 +87,40 @@ public class ConfigPanel extends JPanel {
 	 this.setLayout(new GridLayout(15,1));	
          lengthLabel = new JLabel ("Set length");
    	    lengthTextField = new JTextField(); 
+   	    lengthTextField.setText(Integer.toString(Params.getLength()));
    	    lengthTextField.setActionCommand("LENGHT");
-   	    	lengthTextField.addActionListener(new ConfigurationListener(this));
+   	    lengthTextField.addActionListener(new ConfigurationListener(this));
          widthLabel = new JLabel ("Set width");
    	    widthTextField = new JTextField();
+   	    widthTextField.setText(Integer.toString(Params.getWidth()));
    	    widthTextField.setActionCommand("WIDTH");
-   	    	widthTextField.addActionListener(new ConfigurationListener(this));
+   	    widthTextField.addActionListener(new ConfigurationListener(this));
          maxHeightLabel = new JLabel ("Set maximum height");
-         	    maxHeightTextField = new JTextField();
-   	    maxHeightTextField.setActionCommand("MAX");
-          		maxHeightTextField.addActionListener(new ConfigurationListener(this));
+        maxHeightTextField = new JTextField();
+        maxHeightTextField.setText(Float.toString(Params.getMaxHeight()));
+        maxHeightTextField.setActionCommand("MAX");
+        maxHeightTextField.addActionListener(new ConfigurationListener(this));
          minHeightLabel = new JLabel  ("Set minimum height");
    	    minHeightTextField = new JTextField();
+   	    minHeightTextField.setText(Float.toString(Params.getMinHeight()));
    	    minHeightTextField.setActionCommand("MIN");
-   	       minHeightTextField.addActionListener(new ConfigurationListener(this));
+   	    minHeightTextField.addActionListener(new ConfigurationListener(this));
          roughnessLabel = new JLabel  ("Set roughness");
    	    roughnessTextField = new JTextField();
+   	    roughnessTextField.setText(Float.toString(Params.getRoughness()));
    	    roughnessTextField.setActionCommand("ROUGHNESS");
-   	       roughnessTextField.addActionListener(new ConfigurationListener(this));
+   	    roughnessTextField.addActionListener(new ConfigurationListener(this));
          seedLabel = new JLabel ("Seed");
    	    seedTextField = new JTextField();
+   	    seedTextField.setText(Long.toString(Params.getSeed()));
    	    seedTextField.setActionCommand("SEED");
-   	       seedTextField.addActionListener(new ConfigurationListener(this));
+   	    seedTextField.addActionListener(new ConfigurationListener(this));
          relativnessLabel = new JLabel  ("Height relativeness of the neighbour points");
    	    relativnessTextField = new JTextField();
+   	    relativnessTextField.setText(Float.toString(Params.getRelativness()));
    	    relativnessTextField.setActionCommand("RELATION");
-         		relativnessTextField.addActionListener(new ConfigurationListener(this));
-   	    generateButton = new JButton ("Generate");
+        relativnessTextField.addActionListener(new ConfigurationListener(this));
+   	     generateButton = new JButton ("Generate");
    	    generateButton.setActionCommand("GENERATE");
    	    generateButton.addActionListener(new ConfigurationListener(this));
 
@@ -127,6 +139,8 @@ public class ConfigPanel extends JPanel {
            this.add(relativnessLabel);
            this.add(relativnessTextField);
            this.add(generateButton);
+           
+           
     }
 	public JTextField getLengthTextField() {
 		return lengthTextField;
@@ -153,11 +167,11 @@ public class ConfigPanel extends JPanel {
 	public boolean getIsLinear() {
 		return isLinear;
 	}
-	public void setGenerating(boolean g) {
-		this.generating = g;
+	public static void setGenerating(boolean g) {
+		generating = g;
 	}
-	public boolean getGenerating() {
-		return this.generating;
+	public static boolean getGenerating() {
+		return generating;
 	}
 
 

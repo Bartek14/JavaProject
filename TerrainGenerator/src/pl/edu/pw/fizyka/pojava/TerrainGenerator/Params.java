@@ -2,59 +2,112 @@ package pl.edu.pw.fizyka.pojava.TerrainGenerator;
 
 public class Params {
 	
-	   private long seed;
-	   private float smoothness=2f;
-	   private float roughness=0.3f;
-	   private float maxHeight=320;
-	   private int octaves=4;
-	   private float relativness = 4f;
-	   
-	   public Params(long seed, float roughness, float maxHeight, int octaves, float relativness ) {
+	   private static long seed;
+	   private static float smoothness=2f;
+	   private static float roughness=0.3f;
+	   private static float maxHeight=320;
+	   private static float minHeight=0;
+	   private static int octaves=4;
+	   private static float relativness = 4f;
+	   private static int length;
+	   private static int width;
+
+
+	   public Params(long seed, float roughness, float maxHeight, float minHeight, int octaves, float relativness,
+			   float smoothness, int length, int width ) {
 		// TODO Auto-generated constructor stub
 		   
-		   this.seed = seed;
-		   this.roughness = roughness;
-		   this.smoothness = smoothness;
-		   this.maxHeight = maxHeight;
-		   this.octaves = octaves;
-		   this.relativness = relativness;
+		   Params.seed = seed;
+		   Params.roughness = roughness;
+		   Params.smoothness = smoothness;
+		   Params.maxHeight = maxHeight;
+		   Params.minHeight = minHeight;
+		   Params.octaves = octaves;
+		   Params.relativness = relativness;
+		   Params.length = length;
+		   Params.width = width;
+		   
+		   
 	   
 	   }
-	public long getSeed() {
+	   /*
+	   public Params(Params p) {
+		   Params.seed = Params.seed;
+		   Params.roughness = Params.roughness;
+		   Params.smoothness = Params.smoothness;
+		   Params.maxHeight = Params.maxHeight;
+		   Params.minHeight = Params.minHeight;
+		   Params.octaves = Params.octaves;
+		   Params.relativness = Params.relativness;
+		   Params.length = Params.length;
+		   Params.width = Params.width;
+	   }
+	   */
+	   public Params() {
+		   Params.seed = 647291;
+		   Params.roughness=0.3f;
+		   Params.smoothness = 2f;
+		   Params.maxHeight=320;
+		   Params.minHeight = 0;
+		   Params.octaves = 4;
+		   Params.relativness = 4f;
+		   Params.length = 500;
+		   Params.width = 500;
+		   
+	   }
+	public static long getSeed() {
 		return seed;
 	}
-	public void setSeed(long seed) {
-		this.seed = seed;
+	public static int getLength() {
+		return length;
 	}
-	public float getSmoothness() {
+	public static void setLength(int length) {
+		Params.length = length;
+	}
+	public static int getWidth() {
+		return width;
+	}
+	public static void setWidth(int width) {
+		Params.width = width;
+	}
+	public static void setSeed(long seed) {
+		Params.seed = seed;
+	}
+	public static float getSmoothness() {
 		return smoothness;
 	}
-	public void setSmoothness(float smoothness) {
-		this.smoothness = smoothness;
+	public static void setSmoothness(float smoothness) {
+		Params.smoothness = smoothness;
 	}
-	public float getRoughness() {
+	public static float getRoughness() {
 		return roughness;
 	}
-	public void setRoughness(float roughness) {
-		this.roughness = roughness;
+	public static void setRoughness(float roughness) {
+		Params.roughness = roughness;
 	}
-	public float getMaxHeight() {
+	public static float getMaxHeight() {
 		return maxHeight;
 	}
-	public void setMaxHeight(float maxHeight) {
-		this.maxHeight = maxHeight;
+	public static void setMaxHeight(float maxHeight) {
+		Params.maxHeight = maxHeight;
 	}
-	public int getOctaves() {
+	public static void setMinHeight(float minHeight) {
+		Params.minHeight = minHeight;
+	}
+	   public static float getMinHeight() {
+		return minHeight;
+	}   
+	public static int getOctaves() {
 		return octaves;
 	}
-	public void setOctaves(int octaves) {
-		this.octaves = octaves;
+	public static void setOctaves(int octaves) {
+		Params.octaves = octaves;
 	}
-	public float getRelativness() {
+	public static float getRelativness() {
 		return relativness;
 	}
-	public void setRelativness(float relativness) {
-		this.relativness = relativness;
+	public static void setRelativness(float relativness) {
+		Params.relativness = relativness;
 	}
 	   
 }
