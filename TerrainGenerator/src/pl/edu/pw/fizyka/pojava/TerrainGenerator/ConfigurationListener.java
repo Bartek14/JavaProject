@@ -40,7 +40,6 @@ public class ConfigurationListener implements ActionListener {
 					System.out.println("Nothing to do here with width");
 				}
 			  
-				
 				String maxHeightString = confPanel.getMaxHeightTextField().getText();
 				try
 				{
@@ -62,7 +61,6 @@ public class ConfigurationListener implements ActionListener {
 					System.out.println("Nothing to do here with min");
 				}
 				
-				
 				String roughnessString = confPanel.getRoughnessTextField().getText();
 				try
 				{
@@ -81,6 +79,16 @@ public class ConfigurationListener implements ActionListener {
 				catch (NumberFormatException ex)
 				{
 					System.out.println("Nothing to do here with seed");
+				}
+				
+				String relativnessString = confPanel.getRelativnessTextField().getText();
+				try
+				{
+					Params.setRelativness(Float.parseFloat(relativnessString));
+				}
+				catch (NumberFormatException ex)
+				{
+					System.out.println("Nothing to do here with relativness");
 				}
 				
 			break;
