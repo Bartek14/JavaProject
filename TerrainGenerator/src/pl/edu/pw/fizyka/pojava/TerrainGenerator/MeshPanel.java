@@ -155,6 +155,11 @@ public class MeshPanel extends GLJPanel implements GLEventListener {
 	   
 	   
    }
+   private float linearFading(float startInterpolation, float endInterpolation, float factor ) {
+	  
+	   return startInterpolation*(1f-factor) +endInterpolation * factor;
+	   
+   }
    private float interpolatedHeight(float x, float y) {
 
 	   float downLeft = randomHeight(((int) x), ((int) y));
@@ -165,8 +170,17 @@ public class MeshPanel extends GLJPanel implements GLEventListener {
 	   
 	   float bottomInterpolation = cosineFading(downLeft, downRight,  x-((int) x));
 	   float topInterpolation = cosineFading(upLeft, upRight,  x-((int) x));
-	 
-	   return cosineFading(bottomInterpolation, topInterpolation,  y-((int) y));
+	   
+	   float interpolation;
+	   if(Params.getLinear())
+	   {
+		   interpolation=linearFading(bottomInterpolation, topInterpolation,  y-((int) y));
+	   }
+	   else
+	   {
+		   interpolation=cosineFading(bottomInterpolation, topInterpolation,  y-((int) y));
+	   }
+	   return interpolation;
    }
 	
    private float finalHeight(float x, float y) {

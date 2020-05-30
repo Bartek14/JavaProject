@@ -11,6 +11,7 @@ public class Params {
 	   private static float relativness = 4f;
 	   private static int length;
 	   private static int width;
+	   private static boolean isLinear=false;
 
 
 	   public Params(long seed, float roughness, float maxHeight, float minHeight, int octaves, float relativness,
@@ -108,6 +109,12 @@ public class Params {
 	}
 	public static void setRelativness(float relativness) {
 		Params.relativness = relativness;
+	}
+	public static boolean getLinear() {
+		return isLinear;
+	}
+	public static void setIsLinear(boolean isLinear) {
+		Params.isLinear = isLinear;
 	}
 	   
 }

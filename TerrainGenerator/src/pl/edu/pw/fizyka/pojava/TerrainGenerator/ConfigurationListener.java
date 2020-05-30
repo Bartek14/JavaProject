@@ -9,7 +9,7 @@ public class ConfigurationListener implements ActionListener {
 	public ConfigurationListener(ConfigPanel configPanel) {
 		// TODO Auto-generated constructor stub
 		this.confPanel = configPanel;
-		//this.param = new Params();
+		
 	}
 
 	@Override
@@ -98,12 +98,12 @@ public class ConfigurationListener implements ActionListener {
 		}
 		case "LINEAR": {
 			System.out.println("Nothing to do here with linear");
-			confPanel.isLinear = true;
+			Params.setIsLinear(true);
 		break;	
 		}
 		case "TRIGONOMETRIC": {
 			System.out.println("Nothing to do here with trigonometric");
-			confPanel.isLinear = false;
+			Params.setIsLinear(false);
 		break;	
 		}		
 		default:
