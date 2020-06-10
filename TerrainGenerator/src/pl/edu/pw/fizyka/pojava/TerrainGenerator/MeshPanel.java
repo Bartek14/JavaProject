@@ -37,7 +37,7 @@ public class MeshPanel extends GLJPanel implements GLEventListener {
    //private float relativness = 4f;
    //int columns = 500;
    //int rows = 500;
-   float[][] height;
+   static float[][] height;	//zmienilam na static, bo action listener dla SAVE
    
 
 	public MeshPanel() {

@@ -1,25 +1,28 @@
 package pl.edu.pw.fizyka.pojava.TerrainGenerator;
 
+import java.awt.Container;
 import java.awt.GridLayout;
-
+import java.awt.Window;
 
 import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
 
 public class ConfigPanel extends JPanel {
 	
-	JTextField lengthTextField;
-    JTextField widthTextField;
-    JTextField maxHeightTextField;
-    JTextField minHeightTextField;
-    JTextField roughnessTextField;
-    JTextField seedTextField;
-    JTextField relativnessTextField;
+	static JTextField lengthTextField;
+    static JTextField widthTextField;
+    static JTextField maxHeightTextField;
+    static JTextField minHeightTextField;
+    static JTextField roughnessTextField;
+    static JTextField seedTextField;
+    static JTextField relativnessTextField;
     JButton generateButton;
     
 	JLabel lengthLabel;
@@ -81,9 +84,18 @@ public class ConfigPanel extends JPanel {
 	    	mainMenu.add(interpolationMenu);
 
 	        menuBar.add(mainMenu);
-	        //this.setJMenuBar(menuBar);	
-	    
-	    
+	        
+	        
+	        Container parent = mainMenu.getParent();
+	        if(parent instanceof JComponent) {
+	        	((JComponent)parent).revalidate();
+	        }
+	        Window window = SwingUtilities.getWindowAncestor(mainMenu);
+	        if(window != null) {
+	        	window.revalidate();
+	        }
+	        	
+	        
 	 this.setLayout(new GridLayout(15,1));	
          lengthLabel = new JLabel ("Set length");
    	    lengthTextField = new JTextField(); 
@@ -142,25 +154,25 @@ public class ConfigPanel extends JPanel {
            
            
     }
-	public JTextField getLengthTextField() {
+	public JTextField lengthTextField() {
 		return lengthTextField;
 	}
-	public JTextField getWidthTextField() {
+	public JTextField widthTextField() {
 		return widthTextField;
 	}
-	public JTextField getMaxHeightTextField() {
+	public JTextField maxHeightTextField() {
 		return maxHeightTextField;
 	}
-	public JTextField getMinHeightTextField() {
+	public JTextField minHeightTextField() {
 		return minHeightTextField;
 	}
-	public JTextField getRoughnessTextField() {
+	public JTextField roughnessTextField() {
 		return roughnessTextField;
 	}
-	public JTextField getSeedTextField() {
+	public JTextField seedTextField() {
 		return seedTextField;
 	}
-	public JTextField getRelativnessTextField() {
+	public JTextField relativnessTextField() {
 		return relativnessTextField;
 	}
 	
