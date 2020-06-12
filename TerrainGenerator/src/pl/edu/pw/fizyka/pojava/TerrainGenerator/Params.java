@@ -1,5 +1,5 @@
 package pl.edu.pw.fizyka.pojava.TerrainGenerator;
-
+//Bartosz Ruszczak
 public class Params {
 	
 	   static long seed;
@@ -28,19 +28,7 @@ public class Params {
 		   Params.width = width;
 		   
 	   }
-	   /*
-	   public Params(Params p) {
-		   Params.seed = Params.seed;
-		   Params.roughness = Params.roughness;
-		   Params.smoothness = Params.smoothness;
-		   Params.maxHeight = Params.maxHeight;
-		   Params.minHeight = Params.minHeight;
-		   Params.octaves = Params.octaves;
-		   Params.relativness = Params.relativness;
-		   Params.length = Params.length;
-		   Params.width = Params.width;
-	   }
-	   */
+
 	   public Params() {
 		   Params.seed = 647291;
 		   Params.roughness=0.3f;

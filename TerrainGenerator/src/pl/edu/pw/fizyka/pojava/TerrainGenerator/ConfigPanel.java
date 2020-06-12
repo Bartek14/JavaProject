@@ -13,7 +13,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
-
+//Marta Wojtkowska
 public class ConfigPanel extends JPanel {
 	
 	static JTextField lengthTextField;
@@ -48,8 +48,6 @@ public class ConfigPanel extends JPanel {
     
     public ConfigPanel(Params p) {
 		
-    	//copy constructor
-    	//ConfigPanel.param=new Params(p);
     	
     	 menuBar = new JMenuBar();
 	 mainMenu = new JMenu("Menu");

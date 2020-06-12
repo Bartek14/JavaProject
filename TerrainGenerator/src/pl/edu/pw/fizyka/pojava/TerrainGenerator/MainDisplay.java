@@ -1,17 +1,12 @@
 package pl.edu.pw.fizyka.pojava.TerrainGenerator;
 
-
-
 import java.awt.BorderLayout;
-
-
 import javax.swing.JFrame;
-
 import com.jogamp.opengl.GLCapabilities;
 import com.jogamp.opengl.GLProfile;
 import com.jogamp.opengl.awt.GLCanvas;
 import com.jogamp.opengl.util.FPSAnimator;
-
+//Bartosz Ruszczak
 public class MainDisplay extends JFrame {
 	
 	final public static int HEIGHT = 700;

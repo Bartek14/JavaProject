@@ -1,22 +1,14 @@
 package pl.edu.pw.fizyka.pojava.TerrainGenerator;
 
-
 import java.awt.DisplayMode;
 import java.util.Random;
-
-
-
 import com.jogamp.opengl.GL2;
 import com.jogamp.opengl.GLAutoDrawable;
-
 import com.jogamp.opengl.GLEventListener;
-
 import com.jogamp.opengl.awt.GLJPanel;
 import com.jogamp.opengl.glu.GLU;
 
-
-
-
+//Bartosz Ruszczak
 public class MeshPanel extends GLJPanel implements GLEventListener {
 
    public static DisplayMode dm, dm_old;
@@ -27,16 +19,9 @@ public class MeshPanel extends GLJPanel implements GLEventListener {
     final int scale =15;
     Random heightRandom = new Random();
 
-   //Params parameters;
 
-   //private long seed;
    private float smoothness=2f;
-   //private float roughness=0.3f;
-   //private float maxHeight=320;
-   //private int octaves=4;
-   //private float relativness = 4f;
-   //int columns = 500;
-   //int rows = 500;
+
    static float[][] height;	
    
 
@@ -189,13 +174,13 @@ public class MeshPanel extends GLJPanel implements GLEventListener {
 	   for(int i=0; i<Params.getOctaves(); i++) {
 		     
 		   float frequency = (float) (Math.pow(2,i)/((float) Math.pow(2, Params.getOctaves()-i)));
-		   height+=interpolatedHeight(x*frequency, y*frequency)*Params.getMaxHeight()*(float)(Math.pow(Params.getRoughness(), i));
+		   height+=interpolatedHeight(x*frequency, y*frequency)*(Params.getMaxHeight()-Params.getMinHeight())*(float)(Math.pow(Params.getRoughness(), i));
 		   
 	   }
 	   return height;
    }
    private void meshInit() {
-		//parameters = new Params(ConfigPanel.param);
+
 		 height= new float[Params.getWidth()][Params.getLength()];
 		for (int x = 0; x < Params.getWidth(); x++) {
 			for (int y = 0; y < Params.getLength(); y++) {
@@ -203,16 +188,5 @@ public class MeshPanel extends GLJPanel implements GLEventListener {
 			}
 		}
    }
-   /*
-   public void setParams(Params param) {
-		this.parameters.setSeed(param.getSeed());
-		this.smoothness = param.getSmoothness();
-		this.roughness = param.getRoughness();
-		this.maxHeight = param.getMaxHeight();
-		this.octaves = param.getOctaves();
-		this.relativness = param.getRelativness();
-		this.columns=param.getWidth();
-		this.rows=param.getLength();
-   }
-   */
+
 }
