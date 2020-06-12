@@ -2,21 +2,20 @@ package pl.edu.pw.fizyka.pojava.TerrainGenerator;
 
 public class Params {
 	
-	   private static long seed;
+	   static long seed;
 	   private static float smoothness=2f;
-	   private static float roughness=0.3f;
-	   private static float maxHeight=320;
-	   private static float minHeight=0;
+	   static float roughness=0.3f;
+	   static float maxHeight=320;
+	   static float minHeight=0;
 	   private static int octaves=4;
-	   private static float relativness = 4f;
-	   private static int length;
-	   private static int width;
+	   static float relativness = 4f;
+	   static int length;
+	   static int width;
 	   private static boolean isLinear=false;
 
 
 	   public Params(long seed, float roughness, float maxHeight, float minHeight, int octaves, float relativness,
 			   float smoothness, int length, int width ) {
-		// TODO Auto-generated constructor stub
 		   
 		   Params.seed = seed;
 		   Params.roughness = roughness;
@@ -28,8 +27,6 @@ public class Params {
 		   Params.length = length;
 		   Params.width = width;
 		   
-		   
-	   
 	   }
 	   /*
 	   public Params(Params p) {

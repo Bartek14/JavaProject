@@ -18,11 +18,9 @@ public class MainDisplay extends JFrame {
 	final public static int WIDTH = 1000;
 	
 	public MainDisplay() {
-		// TODO Auto-generated constructor stub
 	
 	}
-	
-	   public static void main( String[] args ) {
+		public static void main( String[] args ) {
 
 		 //getting the capabilities object of GL2 profile
 		      final GLProfile profile = GLProfile.get(GLProfile.GL2);
@@ -35,8 +33,6 @@ public class MainDisplay extends JFrame {
 
 		      ConfigPanel conf = new ConfigPanel(params);
 		      
-//		      Params params = new Params(Long.parseLong(conf.getSetSeedTextField().getText()), Float.parseFloat(conf.getSetRoughnessTextField().getText()),
-//		    		  Float.parseFloat(conf.getSetMaxHeightTextField().getText()),3, Float.parseFloat(conf.getSetRelativnessTextField().getText()));
 		       //creating frame
 		      final JFrame frame = new JFrame ("mesh");
 		      frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -47,7 +43,6 @@ public class MainDisplay extends JFrame {
 		   
 		      frame.setSize(WIDTH,HEIGHT);
 		 
-		      
 		      frame.add(glcanvas, BorderLayout.CENTER);
 		      frame.add(conf,BorderLayout.EAST);
 		      frame.setVisible(true);
@@ -56,9 +51,6 @@ public class MainDisplay extends JFrame {
 		     
 		      glcanvas.addGLEventListener(mesh);
 		
-		      
-		     
-		      
 		      final FPSAnimator animator = new FPSAnimator(glcanvas, 300,true); 
 		         animator.start();
 		   }

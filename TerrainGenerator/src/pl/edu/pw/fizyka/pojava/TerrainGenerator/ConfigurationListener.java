@@ -13,11 +13,8 @@ import javax.swing.JFileChooser;
 public class ConfigurationListener implements ActionListener {
 
 	ConfigPanel confPanel;
-	//Params param;
 	public ConfigurationListener(ConfigPanel configPanel) {
-		// TODO Auto-generated constructor stub
 		this.confPanel = configPanel;
-		
 	}
 
 	@Override
@@ -27,7 +24,6 @@ public class ConfigurationListener implements ActionListener {
 		switch (optionPicked) {
 
 		case "GENERATE": {
-			System.out.println("generate");
 			ConfigPanel.setGenerating(true);
 			
 			 String lengthString = confPanel.lengthTextField().getText(); 
@@ -35,68 +31,90 @@ public class ConfigurationListener implements ActionListener {
 			  Params.setLength(Math.abs(Integer.parseInt(lengthString)));
 			  } 
 			  catch (NumberFormatException ex) {
-				  System.out.println("Nothing to do here with length");
+				  System.out.println("Intercepted exception: " + ex.getClass().getName());
+				  System.out.println("Change the 'length' string format.");
+				  System.out.println("Previous value preserved. Current length value: " + Params.getLength());
+				  ex.printStackTrace();
+				  String previousValue = Integer.toString(Params.getLength());
+				  confPanel.lengthTextField().setText(previousValue);
 			  }
 			  
 				String widthString = confPanel.widthTextField().getText();
-				try
-				{
+				try {
 					 Params.setWidth(Math.abs(Integer.parseInt(widthString)));
 				}
-				catch (NumberFormatException ex)
-				{
-					System.out.println("Nothing to do here with width");
+				catch (NumberFormatException ex) {
+					System.out.println("Intercepted exception: " + ex.getClass().getName());
+					System.out.println("Change the 'width' string format.");
+					System.out.println("Previous value preserved. Current width value: " + Params.getWidth());
+					ex.printStackTrace();
+					String previousValue = Integer.toString(Params.getWidth());
+					confPanel.widthTextField().setText(previousValue);
 				}
 			  
 				String maxHeightString = confPanel.maxHeightTextField().getText();
-				try
-				{
+				try {
 					Params.setMaxHeight(Float.parseFloat(maxHeightString));
 				}
-				catch (NumberFormatException ex)
-				{
-					System.out.println("Nothing to do here with max");
+				catch (NumberFormatException ex) {
+					System.out.println("Intercepted exception: " + ex.getClass().getName());
+					System.out.println("Change the 'max height' string format.");
+					System.out.println("Previous value preserved. Current max height value: " + Params.getMaxHeight());
+					ex.printStackTrace();
+					String previousValue = Float.toString(Params.getMaxHeight());
+					confPanel.maxHeightTextField().setText(previousValue);
 				}
-				
 				
 				String minHeightString = confPanel.minHeightTextField().getText();
-				try
-				{
+				try {
 					Params.setMinHeight(Float.parseFloat(minHeightString));
 				}
-				catch (NumberFormatException ex)
-				{
-					System.out.println("Nothing to do here with min");
+				catch (NumberFormatException ex) {
+					System.out.println("Intercepted exception: " + ex.getClass().getName());
+					System.out.println("Change the 'min height' string format.");
+					System.out.println("Previous value preserved. Current min height value: " + Params.getMinHeight());
+					ex.printStackTrace();
+					String previousValue = Float.toString(Params.getMinHeight());
+					confPanel.minHeightTextField().setText(previousValue);
 				}
 				
 				String roughnessString = confPanel.roughnessTextField().getText();
-				try
-				{
+				try {
 					Params.setRoughness(Float.parseFloat(roughnessString));
 				}
-				catch (NumberFormatException ex)
-				{
-					System.out.println("Nothing to do here with roughness");
+				catch (NumberFormatException ex) {
+					System.out.println("Intercepted exception: " + ex.getClass().getName());
+					System.out.println("Change the 'roughness' string format.");
+					System.out.println("Previous value preserved. Current roughness value: " + Params.getRoughness());
+					ex.printStackTrace();
+					String previousValue = Float.toString(Params.getRoughness());
+					confPanel.roughnessTextField().setText(previousValue);
 				}
 				
 				String seedString = confPanel.seedTextField().getText();
-				try
-				{
+				try {
 					Params.setSeed(Integer.parseInt(seedString));
 				}
-				catch (NumberFormatException ex)
-				{
-					System.out.println("Nothing to do here with seed");
+				catch (NumberFormatException ex) {
+					System.out.println("Intercepted exception: " + ex.getClass().getName());
+					System.out.println("Change the 'seed' string format.");
+					System.out.println("Previous value preserved. Current seed value: " + Params.getSeed());
+					ex.printStackTrace();
+					String previousValue = Long.toString(Params.getSeed());
+					confPanel.seedTextField().setText(previousValue);
 				}
 				
 				String relativnessString = confPanel.relativnessTextField().getText();
-				try
-				{
+				try {
 					Params.setRelativness(Float.parseFloat(relativnessString));
 				}
-				catch (NumberFormatException ex)
-				{
-					System.out.println("Nothing to do here with relativness");
+				catch (NumberFormatException ex) {
+					System.out.println("Intercepted exception: " + ex.getClass().getName());
+					System.out.println("Change the 'height relativness of the neighbour points' string format.");
+					System.out.println("Previous value preserved. Current height relativness of the neighbour points value: " + Params.getRelativness());
+					ex.printStackTrace();
+					String previousValue = Float.toString(Params.getRelativness());
+					confPanel.relativnessTextField().setText(previousValue);
 				}
 				
 			break;
@@ -105,12 +123,10 @@ public class ConfigurationListener implements ActionListener {
 
 		}
 		case "LINEAR": {
-			System.out.println("Nothing to do here with linear");
 			Params.setIsLinear(true);
 		break;	
 		}
 		case "TRIGONOMETRIC": {
-			System.out.println("Nothing to do here with trigonometric");
 			Params.setIsLinear(false);
 		break;	
 		}
@@ -123,76 +139,98 @@ public class ConfigurationListener implements ActionListener {
 				FileWriter writer = null;
 				BufferedWriter bufferedWriter = null;
 				String lengthString = confPanel.lengthTextField().getText();
-				try 
-				{
+				try {
 					writer = new FileWriter(chooser.getSelectedFile());
 					bufferedWriter = new BufferedWriter(writer);
 					  bufferedWriter.write(lengthString);
 					  bufferedWriter.newLine();
 				} 
-				catch (NumberFormatException | IOException ex) 
-				{
-					  System.out.println("Nothing to do here with length");
+				catch (NumberFormatException ex) {
+					System.out.println("Intercepted exception: " + ex.getClass().getName());
+					System.out.println("Change the 'length' string format.");
+					ex.printStackTrace();
+				} 
+				catch (IOException ex) {
+					System.out.println("Intercepted exception: " + ex.getClass().getName());
+					ex.printStackTrace();
 				}
 			String widthString = confPanel.widthTextField().getText();
-				try 
-				{
+				try {
 					  bufferedWriter.write(widthString);
 					  bufferedWriter.newLine();
 				}
-				catch (NumberFormatException | IOException ex) 
-				{
-						System.out.println("Nothing to do here with width");
+				catch (NumberFormatException ex) {
+					System.out.println("Intercepted exception: " + ex.getClass().getName());
+					System.out.println("Change the 'width' string format.");
+					ex.printStackTrace();
+				} catch (IOException ex) {
+					System.out.println("Intercepted exception: " + ex.getClass().getName());
+					ex.printStackTrace();
 				}
 			String maxHeightString = confPanel.maxHeightTextField().getText();
-				try 
-				{
+				try {
 					  bufferedWriter.write(maxHeightString);
 					  bufferedWriter.newLine();
 				}
-				catch (NumberFormatException | IOException ex) 
-				{
-						System.out.println("Nothing to do here with max");
+				catch (NumberFormatException ex) {
+					System.out.println("Intercepted exception: " + ex.getClass().getName());
+					System.out.println("Change the 'max height' string format.");
+					ex.printStackTrace();
+				} catch (IOException ex) {
+					System.out.println("Intercepted exception: " + ex.getClass().getName());
+					ex.printStackTrace();
 				}
 			String minHeightString = confPanel.minHeightTextField().getText();
-				try 
-				{
+				try {
 					  bufferedWriter.write(minHeightString);
 					  bufferedWriter.newLine();
 				}
-				catch (NumberFormatException | IOException ex) 
-				{
-						System.out.println("Nothing to do here with min");
+				catch (NumberFormatException ex) {
+					System.out.println("Intercepted exception: " + ex.getClass().getName());
+					System.out.println("Change the 'min height' string format.");
+					ex.printStackTrace();
+				} catch (IOException ex) {
+					System.out.println("Intercepted exception: " + ex.getClass().getName());
+					ex.printStackTrace();
 				}
 			String roughnessString = confPanel.roughnessTextField().getText();
-				try 
-				{
+				try {
 					  bufferedWriter.write(roughnessString);
 					  bufferedWriter.newLine();
 				}
-				catch (NumberFormatException | IOException ex) 
-				{
-						System.out.println("Nothing to do here with roughness");
+				catch (NumberFormatException ex) {
+					System.out.println("Intercepted exception: " + ex.getClass().getName());
+					System.out.println("Change the 'roughness' string format.");
+					ex.printStackTrace();
+				} catch (IOException ex) {
+					System.out.println("Intercepted exception: " + ex.getClass().getName());
+					ex.printStackTrace();
 				}
 			String seedString = confPanel.seedTextField().getText();
-				try 
-				{
+				try {
 					  bufferedWriter.write(seedString);
 					  bufferedWriter.newLine();
 				}
-				catch (NumberFormatException | IOException ex) 
-				{
-						System.out.println("Nothing to do here with seed");
+				catch (NumberFormatException ex) {
+					System.out.println("Intercepted exception: " + ex.getClass().getName());
+					System.out.println("Change the 'seed' string format.");
+					ex.printStackTrace();
+				} catch (IOException ex) {
+					System.out.println("Intercepted exception: " + ex.getClass().getName());
+					ex.printStackTrace();
 				}
 			String relativnessString = confPanel.relativnessTextField().getText();
-				try 
-				{
+				try {
 					  bufferedWriter.write(relativnessString);
 					  bufferedWriter.newLine();
 				}
-				catch (NumberFormatException | IOException ex) 
-				{
-						System.out.println("Nothing to do here with relativness");
+				catch (NumberFormatException ex) {
+					System.out.println("Intercepted exception: " + ex.getClass().getName());
+					System.out.println("Change the 'height relativness of the neighbour points' string format.");
+					ex.printStackTrace();
+				} catch (IOException ex) {
+					System.out.println("Intercepted exception: " + ex.getClass().getName());
+					ex.printStackTrace();
 				}
 				try {
 					
@@ -234,9 +272,9 @@ public class ConfigurationListener implements ActionListener {
 					  Params.setLength(Integer.parseInt(lengthString));
 					  confPanel.lengthTextField().setText(lengthString);
 				} 
-				catch (NumberFormatException | IOException ex) 
-				{
-					  System.out.println("Nothing to do here with length");
+				catch (IOException ex) {
+					System.out.println("Intercepted exception: " + ex.getClass().getName());
+					ex.printStackTrace();
 				}
 				try 
 				{
@@ -244,9 +282,9 @@ public class ConfigurationListener implements ActionListener {
 					  Params.setWidth(Integer.parseInt(widthString));
 					  confPanel.widthTextField().setText(widthString);
 				}
-				catch (NumberFormatException | IOException ex) 
-				{
-						System.out.println("Nothing to do here with width");
+				catch (IOException ex) {
+					System.out.println("Intercepted exception: " + ex.getClass().getName());
+					ex.printStackTrace();
 				}
 				try 
 				{
@@ -254,9 +292,9 @@ public class ConfigurationListener implements ActionListener {
 					  Params.setMaxHeight(Integer.parseInt(maxHeightString));
 					  confPanel.maxHeightTextField().setText(maxHeightString);
 				}
-				catch (NumberFormatException | IOException ex) 
-				{
-						System.out.println("Nothing to do here with max");
+				catch (IOException ex) {
+					System.out.println("Intercepted exception: " + ex.getClass().getName());
+					ex.printStackTrace();
 				}
 				try 
 				{
@@ -264,9 +302,9 @@ public class ConfigurationListener implements ActionListener {
 					  Params.setMinHeight(Integer.parseInt(minHeightString));
 					  confPanel.minHeightTextField().setText(minHeightString);
 				}
-				catch (NumberFormatException | IOException ex) 
-				{
-						System.out.println("Nothing to do here with min");
+				catch (IOException ex) {
+					System.out.println("Intercepted exception: " + ex.getClass().getName());
+					ex.printStackTrace();
 				}
 				try 
 				{
@@ -274,9 +312,9 @@ public class ConfigurationListener implements ActionListener {
 					  Params.setRoughness(Float.parseFloat(roughnessString));
 					  confPanel.roughnessTextField().setText(roughnessString);
 				}
-				catch (NumberFormatException | IOException ex) 
-				{
-						System.out.println("Nothing to do here with roughness");
+				catch (IOException ex) {
+					System.out.println("Intercepted exception: " + ex.getClass().getName());
+					ex.printStackTrace();
 				}
 				try 
 				{
@@ -284,9 +322,9 @@ public class ConfigurationListener implements ActionListener {
 					  Params.setSeed(Integer.parseInt(seedString));
 					  confPanel.seedTextField().setText(seedString);
 				}
-				catch (NumberFormatException | IOException ex) 
-				{
-						System.out.println("Nothing to do here with seed");
+				catch (IOException ex) {
+					System.out.println("Intercepted exception: " + ex.getClass().getName());
+					ex.printStackTrace();
 				}
 				try 
 				{
@@ -294,9 +332,9 @@ public class ConfigurationListener implements ActionListener {
 					  Params.setRelativness(Float.parseFloat(relativnessString));
 					  confPanel.relativnessTextField().setText(relativnessString);
 				}
-				catch (NumberFormatException | IOException ex) 
-				{
-						System.out.println("Nothing to do here with relativness");
+				catch (IOException ex) {
+					System.out.println("Intercepted exception: " + ex.getClass().getName());
+					ex.printStackTrace();
 				}
 				try {
 					MeshPanel.height= new float[Params.getWidth()][Params.getLength()];
@@ -323,46 +361,16 @@ public class ConfigurationListener implements ActionListener {
 		}
 		case "NEW": {
 			  try {				
-			  Params.setLength(0);
-			  } 
-			  catch (NumberFormatException ex) {
-				  System.out.println("Nothing to do here with length");
-			  }
-			  try {
+				  Params.setLength(0);
 				  Params.setWidth(0);
-			  } 
-			  catch (NumberFormatException ex) {
-					  System.out.println("Nothing to do here with width");
-			  }
-			  try {
 				  Params.setMaxHeight(0);
-			  } 
-			  catch (NumberFormatException ex) {
-					  System.out.println("Nothing to do here with max");
-			  }
-			  try {
 				  Params.setMinHeight(0);
-			  } 
-			  catch (NumberFormatException ex) {
-					  System.out.println("Nothing to do here with min");
-			  }
-			  try {
 				  Params.setRoughness(0);
-			  } 
-			  catch (NumberFormatException ex) {
-					  System.out.println("Nothing to do here with roughness");
-			  }
-			  try {
 				  Params.setSeed(0);
-			  } 
-			  catch (NumberFormatException ex) {
-					  System.out.println("Nothing to do here with seed");
-			  }
-			  try {
 				  Params.setRelativness(0);
 			  } 
-			  catch (NumberFormatException ex) {
-					  System.out.println("Nothing to do here with relativness");
+			  catch (Exception ex) {
+					  ex.printStackTrace();
 			  }
 			  
 			  confPanel.lengthTextField().setText("0");
